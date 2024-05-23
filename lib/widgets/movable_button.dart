@@ -3,16 +3,30 @@ import 'package:flutter/material.dart';
 class MovableButton extends StatefulWidget {
   final VoidCallback onPressed;
   final String label;
+  final double initialX;
+  final double initialY;
 
-  MovableButton({required this.onPressed, required this.label});
+  MovableButton({
+    required this.onPressed,
+     required this.label,
+     required this.initialX,
+     required this.initialY,
+    });
 
   @override
   _MovableButtonState createState() => _MovableButtonState();
 }
 
 class _MovableButtonState extends State<MovableButton> {
-  double xPosition = 0;
-  double yPosition = 0;
+  late double xPosition;
+  late double yPosition;
+
+  @override
+  void initState() {
+    super.initState();
+    xPosition = widget.initialX;
+    yPosition = widget.initialY;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +40,21 @@ class _MovableButtonState extends State<MovableButton> {
             yPosition += details.delta.dy;
           });
         },
-        child: FloatingActionButton(
+        child: SizedBox(
+          width: 100,
+          height: 100,
+          child: FloatingActionButton(
           onPressed: widget.onPressed,
-          child: Text(widget.label),
+          backgroundColor: Colors.red,
+          shape: const CircleBorder(),
+          child: Text(
+            widget.label,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+            ),
+        ),
         ),
       ),
     );
