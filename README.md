@@ -1,3 +1,5 @@
-# clicker
+# clickerrrrr
 
-A new Flutter project.
+jogo no estilo clicker game sendo desenvolvido em flutter.
+
+
