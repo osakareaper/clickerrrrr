@@ -1,5 +1,6 @@
+import 'package:clicker/widgets/movable_button.dart';
 import 'package:flutter/material.dart';
-import '../widgets/counter_button.dart';
+import '../widgets/movable_button.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -21,20 +22,25 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text('clickerrrrr'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'u clickeddddd:',
+      body: Stack(
+        children: <Widget>[
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('u clickeddddd:'),
+                Text(
+                  '$_counter',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            CounterButton(onPressed: _incrementCounter),
-          ],
-        ),
+          ),
+          MovableButton(
+            onPressed: _incrementCounter,
+            label: 'CLICK!',
+          ),
+        ],
       ),
     );
   }
